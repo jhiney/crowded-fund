@@ -1,7 +1,16 @@
 import RandomPortfolioNumber from "../components/randomPortfolioNumber";
 import Position from "../components/position";
+import PositionHeader from "../components/positionHeader";
 
-const companies = ["apple", "msft", "3rd company"];
+const companies = [{
+    name: 'Apple',
+    owned: "1"
+ },
+ {
+    name: 'Microsoft',
+    owned: '10'
+ }
+];
 
 export default function Portfolio() {
 	return (
@@ -13,13 +22,9 @@ export default function Portfolio() {
 					$<RandomPortfolioNumber />
 				</p>
 			</div>
-			<div className="grid grid-cols-3 gap-4 text-center text-3xl text-white">
-				<div>Company</div>
-				<div>Shares Owned</div>
-				<div>Price of investment</div>
-			</div>
-			{companies.map((companies) => {
-				return <Position company={companies} key={companies} owned="1" />;
+			<PositionHeader />
+			{companies.map(({name, owned}) => {
+				return <Position company={name} key={name} owned={owned} />;
 			})}
 		</div>
 	);
