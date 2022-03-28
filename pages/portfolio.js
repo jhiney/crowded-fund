@@ -1,4 +1,5 @@
-import Random from "../components/randomPortfolioNumber";
+import RandomPortfolioNumber from "../components/randomPortfolioNumber";
+import Position from "../components/position";
 
 export default function Portfolio() {
 	return (
@@ -7,17 +8,10 @@ export default function Portfolio() {
 				<p className=" font-semibold text-6xl text-white">
 					Portfolio
 					<br></br>
-					$<Random />
+					$<RandomPortfolioNumber />
 				</p>
 			</div>
-			<div className="grid grid-cols-3 gap-4 text-center text-3xl text-white">
-				<div>Company</div>
-				<div>Shares Owned</div>
-				<div>Price of investment</div>
-				<div>Apple, Inc.</div>
-				<div>112</div>
-				<div>$39,000</div>
-			</div>
+			<Position company="Apple" owned ="2" />
 		</div>
 	);
 }
