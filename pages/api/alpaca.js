@@ -11,8 +11,12 @@ export async function getAccountData() {
     return account;
 }
 
+export async function getPositionData() {
+    const positions = await alpaca.getPositions();
+    return positions;
+}
 
 export default async function handler(req, res) {
-	const jsonData = await getAccountData()
-    res.status(200).json(jsonData)
+	//const jsonData = await getPositionData()
+    res.status(200).json("yes")
   }
