@@ -1,6 +1,6 @@
 import Position from "../components/position";
 import PositionHeader from "../components/positionHeader";
-import { getData } from "../pages/api/alpaca";
+import { getAccountData } from "../pages/api/alpaca";
 
 const companies = [
 	{
@@ -14,20 +14,20 @@ const companies = [
 ];
 
 export async function getServerSideProps() {
-	const accountValue = await getData();
+	const accountValue = await getAccountData();
 	const buyingPower = accountValue.buying_power;
 
 	// Pass data to the page via props
 	return { props: { buyingPower } };
 }
 
-export default function Portfolio({ buyingPower }) {
+export default function Portfolio(props) {
 	return (
 		<div className="bg-zinc-900 min-h-screen font-mono">
 			<div className="container text-center pb-20">
 				<p className="font-semibold text-6xl text-white">
 					Portfolio
-					<br></br>${parseFloat(buyingPower).toLocaleString()}
+					<br></br>${parseFloat(props.buyingPower).toLocaleString()}
 				</p>
 			</div>
 			<PositionHeader />
