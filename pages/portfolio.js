@@ -1,6 +1,6 @@
 import Position from "../components/position";
 import PositionHeader from "../components/positionHeader";
-import { getAccountData } from "../pages/api/alpaca";
+import { getAccountData, getPositionData } from "../pages/api/alpaca";
 
 const companies = [
 	{
@@ -15,10 +15,19 @@ const companies = [
 
 export async function getServerSideProps() {
 	const accountValue = await getAccountData();
-	const buyingPower = accountValue.buying_power;
+	const positions = await getPositionData();
 
-	// Pass data to the page via props
-	return { props: { buyingPower } };
+	const buyingPower = accountValue.buying_power;
+	const portfolioEquity = accountValue.equity;
+
+
+	return {
+		props: {
+			buyingPower,
+			portfolioEquity,
+			positions
+		}
+	};
 }
 
 export default function Portfolio(props) {
@@ -27,12 +36,12 @@ export default function Portfolio(props) {
 			<div className="container text-center pb-20">
 				<p className="font-semibold text-6xl text-white">
 					Portfolio
-					<br></br>${parseFloat(props.buyingPower).toLocaleString()}
+					<br></br>${parseFloat(props.portfolioEquity).toLocaleString()}
 				</p>
 			</div>
 			<PositionHeader />
-			{companies.map(({ companyName, amountOwned }) => {
-				return <Position company={companyName} key={companyName} owned={amountOwned} />;
+			{props.positions.map(({ symbol, qty,market_value }) => {
+				return <Position company={symbol} key={symbol} owned={qty} value={market_value} />;
 			})}
 		</div>
 	);
