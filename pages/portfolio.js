@@ -22,7 +22,7 @@ export default function Portfolio(props) {
 	return (
 		<div className="bg-zinc-900 min-h-screen font-mono">
 			<div className="container text-center pb-20">
-				<p className="font-semibold text-6xl text-white">
+				<p className="font-semibold text-6xl text-white pt-16">
 					Portfolio
 					<br></br>${parseFloat(props.portfolioEquity).toLocaleString()}
 				</p>
