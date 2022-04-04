@@ -2,24 +2,12 @@ import Position from "../components/position";
 import PositionHeader from "../components/positionHeader";
 import { getAccountData, getPositionData } from "../pages/api/alpaca";
 
-const companies = [
-	{
-		companyName: "Apple",
-		amountOwned: "1"
-	},
-	{
-		companyName: "Microsoft",
-		amountOwned: "10"
-	}
-];
-
 export async function getServerSideProps() {
 	const accountValue = await getAccountData();
 	const positions = await getPositionData();
 
 	const buyingPower = accountValue.buying_power;
 	const portfolioEquity = accountValue.equity;
-
 
 	return {
 		props: {
@@ -40,7 +28,7 @@ export default function Portfolio(props) {
 				</p>
 			</div>
 			<PositionHeader />
-			{props.positions.map(({ symbol, qty,market_value }) => {
+			{props.positions.map(({ symbol, qty, market_value }) => {
 				return <Position company={symbol} key={symbol} owned={qty} value={market_value} />;
 			})}
 		</div>
