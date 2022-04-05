@@ -10,9 +10,9 @@ export default function Landing(props) {
 				<meta name="description" content="crowded-fund" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<h1 className="font-semibold text-6xl text-white text-center pt-16">crowded fund</h1>
+			<h1 className=" text-6xl text-white text-center pt-16">crowded fund</h1>
 			<div className="container">
-				<h1 className="font-semibold text-6xl text-white text-center pt-16">
+				<h1 className=" text-6xl text-white text-center pt-16">
 					Investing in Apple would be a ...
 				</h1>
 				<div className="container grid grid-cols-5 gap-1 text-center text-3xl text-white p-16">
@@ -22,7 +22,7 @@ export default function Landing(props) {
 					<div className="hover:text-lime-400 transition ease-in-out">Decent</div>
 					<div className="hover:text-green-700 transition ease-in-out">Good</div>
 				</div>
-				<h1 className="font-semibold text-6xl text-white text-center">...idea.</h1>
+				<h1 className=" text-6xl text-white text-center">...idea.</h1>
 			</div>
 		</div>
 	);
