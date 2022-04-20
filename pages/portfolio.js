@@ -3,6 +3,7 @@ import PositionHeader from "../components/positionHeader";
 import { getAccountData, getPositionData } from "../pages/api/alpaca";
 
 export async function getServerSideProps() {
+	
 	const accountValue = await getAccountData();
 	const positions = await getPositionData();
 
@@ -18,6 +19,24 @@ export async function getServerSideProps() {
 	};
 }
 
+async function sendOrder(symbol, qty, side) {
+	const objectWithData = {
+		symbol: symbol,
+		qty: qty,
+		side: side,
+	} 
+	
+	//console.log(objectWithData.symbol);
+	fetch('/api/alpaca', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(objectWithData),
+	  })
+	  
+}
+
 export default function Portfolio(props) {
 	return (
 		<div className="bg-zinc-900 min-h-screen font-mono">
@@ -31,6 +50,7 @@ export default function Portfolio(props) {
 			{props.positions.map(({ symbol, qty, market_value }) => {
 				return <Position company={symbol} key={symbol} owned={qty} value={market_value} />;
 			})}
+			<button onClick={() => sendOrder('AAPL','1','buy')} className="rounded-ful bg-white">Save Changes</button>
 		</div>
 	);
 }

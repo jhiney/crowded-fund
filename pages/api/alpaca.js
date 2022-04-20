@@ -7,16 +7,29 @@ const alpaca = new Alpaca({
 });
 
 export async function getAccountData() {
-    const account = await alpaca.getAccount();
-    return account;
+	const account = await alpaca.getAccount();
+	return account;
 }
 
 export async function getPositionData() {
-    const positions = await alpaca.getPositions();
-    return positions;
+	const positions = await alpaca.getPositions();
+	return positions;
 }
 
+
+
 export default async function handler(req, res) {
-	//const jsonData = await getPositionData()
-    res.status(200).json("yes")
-  }
+	if (req.method !== "POST") {
+		res.status(405).send({ message: "Only POST requests allowed" });
+		return;
+	}
+
+	const order = await alpaca.createOrder({
+        symbol: "AAPL", // any valid ticker symbol
+        qty: 1, // qty or notional required, not both
+        side: 'buy',
+        type: 'market',
+        time_in_force: 'day' 
+      })
+	return order;
+}
