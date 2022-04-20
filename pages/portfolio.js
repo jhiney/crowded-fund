@@ -35,6 +35,8 @@ async function sendOrder(symbol, qty, side) {
 		body: JSON.stringify(objectWithData),
 	  })
 	  
+	 console.log(objectWithData);
+	  
 }
 
 export default function Portfolio(props) {
@@ -50,7 +52,7 @@ export default function Portfolio(props) {
 			{props.positions.map(({ symbol, qty, market_value }) => {
 				return <Position company={symbol} key={symbol} owned={qty} value={market_value} />;
 			})}
-			<button onClick={() => sendOrder('AAPL','1','buy')} className="rounded-ful bg-white">Save Changes</button>
+			<button onClick={() => sendOrder('MS','1','buy')} className="rounded-ful bg-white">Save Changes</button>
 		</div>
 	);
 }

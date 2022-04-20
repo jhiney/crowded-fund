@@ -23,13 +23,16 @@ export default async function handler(req, res) {
 		res.status(405).send({ message: "Only POST requests allowed" });
 		return;
 	}
+    console.log(req.body.symbol);
 
 	const order = await alpaca.createOrder({
-        symbol: "AAPL", // any valid ticker symbol
-        qty: 1, // qty or notional required, not both
-        side: 'buy',
+        symbol: req.body.symbol, // any valid ticker symbol
+        qty: req.body.qty, // qty or notional required, not both
+        side: req.body.side, // 'buy' or 'sell'
         type: 'market',
         time_in_force: 'day' 
       })
 	return order;
+
+
 }
