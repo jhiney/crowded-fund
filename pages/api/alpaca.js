@@ -24,6 +24,9 @@ export default async function handler(req, res) {
 		return;
 	}
     console.log(req.body.symbol);
+    console.log(req.body.qty);
+    console.log(req.body.side);
+
 
 	const order = await alpaca.createOrder({
         symbol: req.body.symbol, // any valid ticker symbol
