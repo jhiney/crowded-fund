@@ -3,9 +3,6 @@ import { useState } from "react";
 import PositionHeader from "../components/positionHeader";
 import { getAccountData, getPositionData } from "../pages/api/alpaca";
 
-
-
-
 export async function getServerSideProps() {
 	const accountValue = await getAccountData();
 	const positions = await getPositionData();
@@ -46,10 +43,9 @@ export default function Portfolio(props) {
 	const [qty, setQty] = useState("");
 	const [side, setSide] = useState("buy");
 
-
 	return (
 		<div className="bg-zinc-900 min-h-screen font-mono">
-			<div className="container text-center pb-20">
+			<div className="container text-center pb-5">
 				<p className="font-semibold text-6xl text-white pt-16">
 					Portfolio
 					<br></br>${parseFloat(props.portfolioEquity).toLocaleString()}
@@ -90,21 +86,24 @@ export default function Portfolio(props) {
 							onChange={(e) => setSide(e.target.value)}
 							id="bs"
 							name="bs"
-							className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-							>
+							className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 							<option>buy</option>
 							<option>sell</option>
 						</select>
 					</div>
 				</div>
 			</div>
+			<div className="grid grid-cols-6  pb-20">
+				<button
+					onClick={() => sendOrder(symbol.toUpperCase(), qty, side)}
+					className="bg-transparent hover:bg-white text-white font-semibold hover:text-black py-2 px-4 border border-white hover:border-transparent rounded text-center col-start-3 col-span-2">
+					Execute Trade
+				</button>
+			</div>
 			<PositionHeader />
 			{props.positions.map(({ symbol, qty, market_value }) => {
 				return <Position company={symbol} key={symbol} owned={qty} value={market_value} />;
 			})}
-			<button onClick={() => sendOrder(symbol.toUpperCase(), qty, side)} className="rounded-ful bg-white">
-				Save Changes
-			</button>
 		</div>
 	);
 }
