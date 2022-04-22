@@ -7,13 +7,22 @@ const alpaca = new Alpaca({
 });
 
 export async function getAccountData() {
-	const account = await alpaca.getAccount();
-	return account;
+	try {
+		const account = await alpaca.getAccount();
+		return account;
+	} catch (err) {
+		console.log(err);
+	}
+	
 }
 
 export async function getPositionData() {
-	const positions = await alpaca.getPositions();
-	return positions;
+	try {
+		const positions = await alpaca.getPositions();
+		return positions;
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 export default async function handler(req, res) {
