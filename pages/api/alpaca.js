@@ -25,6 +25,15 @@ export async function getPositionData() {
 	}
 }
 
+export async function getStockSnapshot(symbol) {
+	try {
+		const snap = await alpaca.getSnapshot(symbol);
+		return snap;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export default async function handler(req, res) {
 	if (req.method !== "POST") {
 		res.status(405).send({ message: "Only POST requests allowed" });
