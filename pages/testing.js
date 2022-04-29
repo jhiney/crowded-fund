@@ -1,20 +1,12 @@
 import AssetGrid from "../components/assetGrid";
 import { useState } from "react";
 
-import { getMultiStockSnapshot, getStockSnapshot } from "../pages/api/alpaca";
+import { getMultiStockSnapshot } from "../pages/api/alpaca";
 
 export async function getServerSideProps() {
-	const snapshot = await getStockSnapshot("AAPL");
-	const multi = await getMultiStockSnapshot(["AAPL", "GS", "NET"]);
-	const close = snapshot.DailyBar.ClosePrice;
-	const open = snapshot.DailyBar.OpenPrice;
-	const quote = snapshot.LatestTrade.Price;
-
+	const multi = await getMultiStockSnapshot(["AAPL", "GS", "NET", "JPM", "F"]);
 	return {
 		props: {
-			close,
-			quote,
-			open,
 			multi
 		}
 	};
