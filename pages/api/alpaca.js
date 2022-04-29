@@ -24,15 +24,6 @@ export async function getPositionData() {
 	}
 }
 
-export async function getStockSnapshot(symbol) {
-	try {
-		const snap = await alpaca.getSnapshot(symbol);
-		return snap;
-	} catch (error) {
-		console.log(error);
-	}
-}
-
 export async function getMultiStockSnapshot(symbols) {
 	try {
 		const multisnap = await alpaca.getSnapshots(symbols);
