@@ -33,6 +33,15 @@ export async function getMultiStockSnapshot(symbols) {
 	}
 }
 
+export async function getCompanyName(symbol) {
+	try {
+		const companyName = await alpaca.getAsset(symbol);
+		return companyName;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export default async function handler(req, res) {
 	if (req.method !== "POST") {
 		res.status(405).send({ message: "Only POST requests allowed" });
