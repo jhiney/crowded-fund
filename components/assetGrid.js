@@ -14,7 +14,7 @@ export default function AssetGrid(props) {
 	});
 
 	return (
-		<div className="container mx-auto p-6 grid grid-cols-4 gap-4 content-center">
+		<div className="container mx-auto p-6 grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-4 content-start pt-16">
 			{snaps.map(({ symbol, close, open, quote, cardID }) => {
 				return (
 					<AssetCard

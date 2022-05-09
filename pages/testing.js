@@ -22,9 +22,11 @@ export async function getServerSideProps() {
 export default function Testing(props) {
 	const [sideValue, setSideValue] = useState([]);
 	return (
-		<div className="bg-zinc-900 min-h-screen font-mono flex h-screen">
-			{props.multi.length}
-			<AssetGrid setSideValue={setSideValue} sideValue={sideValue} {...props} />
+		<div className="bg-zinc-900 min-h-screen font-mono h-screen">
+			<p className="bg-zinc-900 text-6xl text-white text-center font-mono pt-4">the crowded fund</p>
+			<div>
+				<AssetGrid setSideValue={setSideValue} sideValue={sideValue} {...props} />
+			</div>
 		</div>
 	);
 }
