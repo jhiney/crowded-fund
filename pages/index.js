@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 export default function Home() {
 	return (
@@ -12,9 +13,24 @@ export default function Home() {
 			</Head>
 
 			<main className={styles.main}>
-				<h1 className={styles.title}>
-					This is a terrible idea.
-				</h1>
+				<h1 className={styles.title}>This is a great idea.</h1>
+				<div className="container mx-auto p-6 grid grid-cols-3 gap-4 content-start pt-16">
+				<Link href={"/landing"} passHref>
+					<button className="border-black font-semibold text-black py-2 px-4 border text-center rounded-full hover:bg-black hover:text-white">
+						Landing
+					</button>
+					</Link>
+					<Link href={"/testing"} passHref>
+					<button className="border-black font-semibold text-black py-2 px-4 border text-center rounded-full hover:bg-black hover:text-white">
+						Testing
+					</button>
+					</Link>
+					<Link href={"/portfolio"} passHref>
+					<button className="border-black font-semibold text-black py-2 px-4 border text-center rounded-full hover:bg-black hover:text-white">
+						Portfolio
+					</button>
+					</Link>
+				</div>
 			</main>
 
 			<footer className={styles.footer}>

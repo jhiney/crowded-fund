@@ -20,22 +20,19 @@ export async function getServerSideProps() {
 }
 
 async function sendOrder(symbol, qty, side) {
-	const objectWithData = {
+	const orderObject = {
 		symbol: symbol,
 		qty: qty,
 		side: side
 	};
 
-	//console.log(objectWithData.symbol);
 	fetch("/api/alpaca", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
 		},
-		body: JSON.stringify(objectWithData)
+		body: JSON.stringify(orderObject)
 	});
-
-	console.log(objectWithData);
 }
 
 export default function Portfolio(props) {
