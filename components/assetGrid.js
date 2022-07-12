@@ -13,6 +13,7 @@ export default function AssetGrid(props) {
 		});
 	});
 
+	//The grid is a seperate component for mostly style and readability reasons.
 	return (
 		<div className="container mx-auto p-6 grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-4 content-start pt-16">
 			{snaps.map(({ symbol, close, open, quote, cardID }) => {
