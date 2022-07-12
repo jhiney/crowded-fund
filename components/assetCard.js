@@ -31,7 +31,7 @@ export default function AssetCard({
 					${symbol} - ${quote}
 				</div>
 				<p className=" text-base text-zinc-200">
-					{name.substring(0, name.indexOf(".") + 1)} closed yesterday at ${close} and opened today
+					{name} closed yesterday at ${close} and opened today
 					at ${open}
 				</p>
 			</div>
@@ -39,6 +39,7 @@ export default function AssetCard({
 				<button
 					value="buy"
 					onClick={SideButtonClicked}
+					//We use the side selection to determine which button should be highlighted.
 					className={
 						(buySell == "buy" ? "bg-white text-black" : "bg-transparent text-white ") +
 						"bg-transparent hover:bg-white font-semibold hover:text-black py-2 px-4 border border-white hover:border-transparent rounded text-center"
